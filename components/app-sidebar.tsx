@@ -10,7 +10,7 @@ import {
     SidebarHeader,
     SidebarFooter
   } from "@/components/ui/sidebar"
-  import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+  import { Calendar, Home, Inbox, Search, Settings,History , School} from "lucide-react"
 
   // Menu items.
 const items = [
@@ -22,12 +22,12 @@ const items = [
     {
       title: "Explore",
       url: "/explore",
-      icon: Inbox,
+      icon: School,
     },
     {
       title: "history",
       url: "/history",
-      icon: Calendar,
+      icon: History,
     },
     {
       title: "Search",
