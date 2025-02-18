@@ -10,13 +10,13 @@ import {
     SidebarHeader,
     SidebarFooter
   } from "@/components/ui/sidebar"
-  import { Calendar, Home, Inbox, Search, Settings,History , School} from "lucide-react"
+  import { Home, Search, Settings,History , School} from "lucide-react"
 
   // Menu items.
 const items = [
     {
       title: "Home",
-      url: "#",
+      url: "/",
       icon: Home,
     },
     {
