@@ -1,6 +1,7 @@
 // import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 // import { AppSidebar } from "@/components/app-sidebar"
 
+'use client';
 import {
   Sheet,
   SheetContent,
@@ -12,12 +13,31 @@ import {
 import WeightChange from "@/components/ui/Home/weightChange";
 import DayOfWeek from "@/components/ui/Home/dayofWeek";
 import ResizableDemo from "@/components/ui/Home/Resizable";
+import { useState, useEffect } from "react";
+import { set } from "react-hook-form";
 
 
 
 export default function Home() {
-  let curr_w = 45
-  let goal_w = 65
+  //use state to get the current and goal weight
+  const [currentWeight, setCurrentWeight] = useState("");
+  const [goalWeight, setGoalWeight] = useState("");
+
+
+  useEffect(() => 
+  {
+    let curr_weight = localStorage.getItem("currentWeight");
+    let goal_weight = localStorage.getItem("goalWeight");
+    if (curr_weight) setCurrentWeight(curr_weight);
+    if (goal_weight) setGoalWeight(goal_weight);
+  },[])
+
+  const updateweight = (currentWeight: string, goalWeight: string) => {
+    setCurrentWeight(currentWeight);
+    setGoalWeight(goalWeight);
+  };
+
+
   return (
     <div>
       <Sheet>
@@ -28,7 +48,7 @@ export default function Home() {
                 Current Weight
               </h1>
               <h1 className="scroll-m-20 text-lg font-extrabold tracking-tight lg:text-xl">
-                {curr_w} KG
+                {currentWeight} KG
               </h1>
             </span>
             <hr className="w-0.5 h-4/5 bg-black m-2" />
@@ -37,7 +57,7 @@ export default function Home() {
                 Goal Weight
               </h1>
               <h1 className="scroll-m-20 text-lg font-extrabold tracking-tight lg:text-xl">
-                {goal_w} KG
+                {goalWeight} KG
               </h1>
             </span>
           </div>
@@ -48,7 +68,7 @@ export default function Home() {
             <SheetDescription>
               This action will change your current weight and goal weight.
             </SheetDescription>
-            <WeightChange />
+            <WeightChange props= {updateweight}/>
           </SheetHeader>
         </SheetContent>
       </Sheet>
