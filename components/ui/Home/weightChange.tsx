@@ -21,16 +21,20 @@ export default function WeightChange(props:any) {
   
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const formElements = (event.target as HTMLFormElement).elements;
-    console.log(formElements);
-    const current = formElements.namedItem("current");
-    const goal = formElements.namedItem("goal");
-    let currentWeight, goalWeight;
-    if (current)  currentWeight = (current as HTMLInputElement).value;
-    if (goal)  goalWeight = (goal as HTMLInputElement).value;
 
-    props.updateweight(currentWeight, goalWeight);
+    event.preventDefault(); //prevent the default form submission
+
+    const formElements = (event.target as HTMLFormElement).elements; //getting all the forms element
+
+    // console.log(formElements);
+    const current = formElements.namedItem("current"); //getting the current weight
+    const goal = formElements.namedItem("goal"); //getting the goal weight
+    let currentWeight, goalWeight; //initializing the current and goal weight
+    if (current)  currentWeight = (current as HTMLInputElement).value; //getting the current weight
+    if (goal)  goalWeight = (goal as HTMLInputElement).value; //getting the goal weight
+
+    //passing the the new weights back up to the parent component
+    props.changeWeight(currentWeight, goalWeight);
   }
   return (
     <div>
@@ -40,13 +44,13 @@ export default function WeightChange(props:any) {
             <Label htmlFor="current" className="text-right">
               current weight
             </Label>
-            <Input id="current" placeholder="45 KG" className="col-span-3" />
+            <Input id="current" placeholder="45 KG" className="col-span-3" value={props.currentWeight} />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="goal" className="text-right">
               goal weight
             </Label>
-            <Input id="goal" placeholder="65 KG" className="col-span-3" />
+            <Input id="goal" placeholder="65 KG" className="col-span-3" value={props.goalWeight}/>
           </div>
         </div>
         <SheetFooter>

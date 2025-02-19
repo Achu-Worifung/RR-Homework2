@@ -31,7 +31,7 @@ export default function RootLayout({
       >
       <SidebarProvider>
       <AppSidebar />
-      <main>
+      <main style={{flexGrow: 1}}>
         <SidebarTrigger />
         {children}
       </main>
