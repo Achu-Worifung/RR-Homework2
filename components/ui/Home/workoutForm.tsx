@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-  weight: z.string().min(2, {
+  username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
 })
@@ -30,32 +30,16 @@ export function ProfileForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="weight"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight</FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="lbs" {...field} />
+                <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
               </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="repetition"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Repetition</FormLabel>
-              <FormControl>
-                <Input placeholder="x" {...field} />
-              </FormControl>
-              {/* <FormDescription>
-                This is your public display name.
-              </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
